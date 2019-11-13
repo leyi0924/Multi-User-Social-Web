@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="93en-US">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="HTML, Angular, CSS">
+  <meta name="description" content="Main Page">
+  <meta name="author" content="Leyi Du">
+</head>
+
+<body>
+
+<p></p>
+<header><div class="mp">Main Page</div></header>
+<table class="main1" >
+  <tr>
+    <td width="30%">
+      <button id="logout" type="submit" (click)="logout()">Log Out</button>
+      &nbsp;&nbsp;&nbsp;
+      <button type="submit" (click)="returnProfile()">Profile</button>
+      <br/><br/>
+      <img class="profilepic" src={{profilePic}}>
+      <br/>
+      <b>{{name}}</b>
+      <br/>
+      <span id="status">{{status}}</span>
+      <br/>
+      <form (ngSubmit)="onRegSubmit(upPro)" #upPro="ngForm">
+        <input type="text" [(ngModel)]="upPro.statusUp" #statusUp="ngModel"
+               id="statusUp" name="statusUp">
+        <button id="statusBtn" type="submit">Change Status</button>
+      </form>
+    </td>
+
+    <td valign="middle" width="40%" align="center">
+      <form #post="ngForm">
+      <textarea type="text" [(ngModel)]="post.postArea" #postArea="ngModel"
+                id="postArea" name="postArea" placeholder="Add new post here" style="height:100px"></textarea><br/>
+      <button id="postBtn" (click)="addPost(post)">Post</button>
+      <button><label>Add Image<input type="file" value="Upload New Picture" #file style="display: none"
+                                     (change)="getPostPic($event.target.files)" accept=".jpeg,.png,.jpg"></label></button>
+      <br/>
+      <button (click)="cancelPost(post)">Cancel</button>
+      </form>
+    </td>
+
+    <td width="30%">
+      <div class ="authTitlePro">
+        <br><br><br><br>
+        &nbsp;&nbsp;&nbsp;This is your OneStop Social Page!&nbsp;&nbsp;&nbsp;
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<table class="main2">
+  <tr>
+    <td width="30%" valign="top">
+      <table >
+        <tr *ngFor="let f of followers" >
+          <td>
+            <img class="fimg" src="{{f.image}}"><br/>
+            <span>{{f.name}}</span><br/>
+            <span>{{f.status}}</span><br/>
+            <span><button (click)="removeFollower(f)">Unfollow</button></span><br/><br/><br/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <form #addFollower="ngForm">
+              <input type="text" [(ngModel)]="addFollower.followerNm" #followerNm="ngModel"
+                     id="followerNm" name="followerNm" placeholder="Add Followers Here">
+              <button (click)="addFollow(addFollower)">Add</button><br/><br/>
+              <div class="addValidF" *ngIf="wrongFollower&&(!addFollower.touched)">Not a registered user</div>
+              <div class="existingF" *ngIf="existingFollower&&(!addFollower.touched)">Already following this user</div>
+              <div class="selfF" *ngIf="selfFollower&&(!addFollower.touched)">You cannot follow yourself</div>
+            </form>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td width="70%" valign="top">
+      <form #searchPost="ngForm">
+      <input type="text" [(ngModel)]="searchPost.searchArea" #searchArea="ngModel"
+             id="searchArea" name="searchArea" placeholder="Search Text Here">
+      <button id="searchBtn" (click)="searchPosts(searchPost)">Search</button><br/><br/>
+      </form>
+      <table>
+        <tr *ngFor="let a of articles;let i=index" class="articlesShown">
+          <td>
+            <img class="postimg" src="{{a.img}}"><br/>
+            <span>From <span id="textAuthor{{i}}">{{a.author}}</span> on {{a.date}}</span><br/>
+            <span id="articleText{{i}}">{{a.text}}</span><br/>
+            <form #editPost="ngForm">
+              <input type="text" [(ngModel)]="editPost.newCmt" #newCmt="ngModel"
+                     id="newCmt" name="newCmt" placeholder="New Comment Here">
+              <button id="comBtn" (click)="newComment(a,editPost)">New Comment</button>
+              <input type="text" [(ngModel)]="editPost.editArea" #editArea="ngModel"
+                     id="editArea" name="editArea" placeholder="Edit Text Here">
+              <button id="editPostBtn" (click)="editPosts(a._id,editPost)">Edit Post</button><br/><br/>
+
+            <div *ngIf="show">
+              <div *ngFor="let c of a.comments">
+                Comment by {{c.author}}<br/>
+                {{c.text}}<br/>
+                on {{c.date}}<br/>
+                <input type="text" [(ngModel)]="editPost.editCmt" #editCmt="ngModel"
+                       id="editCmt" name="editCmt" placeholder="Edit Comment Here">
+                <button id="editComBtn" (click)="editCmts(a._id,c.commentId,editPost)">Edit Comment</button>
+              </div>
+            </div>
+            <button *ngIf="!show" (click)="showComment()">Show Comments</button><button *ngIf="show" (click)="showComment()">Hide Comments</button>
+            </form>
+            <br/><br/><br/><br/><br/>
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+</body>

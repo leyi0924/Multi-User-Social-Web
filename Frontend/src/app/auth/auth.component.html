@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="93en-US">
+        
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="keywords" content="HTML, Angular, CSS">
+            <meta name="description" content="Landing Page">
+            <meta name="author" content="Leyi Du">
+        </head>
+        <body>
+
+        <div class ="authTitle">
+        <br><br>
+        <h1>
+            &nbsp;&nbsp;&nbsp;Welcome to your OneStop Social Page!
+        </h1>
+
+        <br><br>
+
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please Login or Register!
+        </p>
+        </div>
+
+        <br><br><br>
+
+            <table class= "formTable" cellspacing="100">
+                <tr><td valign="top" width="45%">
+                    <form (ngSubmit)="onLoginSubmit(login)" #login="ngForm">
+                      Username: <br/><input type="text" placeholder="Enter your username" [(ngModel)]="login.username" #username="ngModel"
+                                       id="username" name="username" required>
+                      <div class="red" *ngIf="username.errors?.required && (username.dirty || username.touched)">Name is required.</div>
+                      <p></p>
+                      Password: <br/><input type="password" placeholder="Enter your password" [(ngModel)]="login.password" #password="ngModel"
+                                              id="password" name="password" required>
+                      <div class="red" *ngIf="password.errors?.required && (password.dirty || password.touched)">Password is required.</div>
+                      <p></p><button type="submit" id = "loginBtn">Login</button>
+                        <div class="message1" *ngIf="cannotLogin&&(!login.touched)">Not a registered user or entered wrong password.</div>
+                    </form>
+                    <button (click)="LoginFB()">Login via Facebook</button>
+                </td>
+                <td width="10%"></td>
+                <td width="45%">
+                <form (ngSubmit)="onRegSubmit(reg)" #reg="ngForm">
+                  Account Name*<br><input type="text" [(ngModel)]="reg.acctname" #acctname="ngModel"
+                                          id="acctname" name="acctname" pattern="^[A-Za-z]{1}[0-9A-Za-z]{0,}$" required>
+                  <div class="red" *ngIf="acctname.errors?.required && (acctname.dirty || acctname.touched)">Account Name is required.</div>
+                  <div class="red" *ngIf="acctname.errors?.pattern">Account name can only be upper or lower case letters and numbers, may not start with a number.</div>
+                  <br/>Display Name<br><input type="text" [(ngModel)]="reg.disname" #disname="ngModel"
+                                            id="disname" name="disname">
+                  <br/>Email Address*<br/><input type="email" [(ngModel)]="reg.email" #email="ngModel"
+                                              id="email" name="email" required email>
+                  <div class="red" *ngIf="email.errors?.required && (email.dirty || email.touched)">Email is required.</div>
+                  <div class="red" *ngIf="email.errors?.email">Please enter a valid email.</div>
+                  <br/>Phone Number*<br/><input type="tel" [(ngModel)]="reg.tel" #tel="ngModel"
+                                             id="tel" name="tel" pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$" required>
+                  <div class="red" *ngIf="tel.errors?.required && (tel.dirty || tel.touched)">Phone Number is required.</div>
+                  <div class="red" *ngIf="tel.errors?.pattern">Please enter phone in 123-123-1234 format.</div>
+                  <br/>Date of Birth*<br/><input type="date" [(ngModel)]="reg.dob" #dob="ngModel"
+                                              id="dob" name="dob" required>
+                  <div class="red" *ngIf="dob.errors?.required && (dob.dirty || dob.touched)">Date of Birth is required.</div>
+                  <div class="red" *ngIf="validateAgeNotPass(reg)">You must be at least 18 years old.</div>
+                  <br/>Zipcode*<br/><input type="text" [(ngModel)]="reg.zip" #zip="ngModel"
+                                        id="zip" name="zip" pattern="^[0-9]{5}$" required>
+                  <div class="red" *ngIf="zip.errors?.required && (zip.dirty || zip.touched)">Zipcode is required.</div>
+                  <div class="red" *ngIf="zip.errors?.pattern">Please enter in 12345 format.</div>
+                  <br/>Password*<br/><input type="password" [(ngModel)]="reg.password2" #password2="ngModel"
+                                         id="password2" name="password2" required>
+                  <div class="red" *ngIf="password2.errors?.required && (password2.dirty || password2.touched)">Password is required.</div>
+                  <br/>Password Confirmation*<br/><input type="password" [(ngModel)]="reg.passcon" #passcon="ngModel"
+                                                      id="passcon" name="passcon" required>
+                  <div class="red" *ngIf="passcon.errors?.required && (passcon.dirty || passcon.touched)">Password Confirmation is required.</div>
+                  <div class="red" *ngIf="passcon.value!==password2.value">Password does not match.</div>
+                  <p></p>
+                  <p><input type="submit" value="Register" id="regButt"></p>
+                    <div class="message3" id="message3" *ngIf="registered&&(!reg.touched)">You have successfully registered.</div>
+                  </form>
+
+                </td>
+              </tr>
+             </table>
+        </body>
+

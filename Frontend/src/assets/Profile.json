@@ -1,0 +1,8 @@
+[
+	{"name": "John", "password": "123456", "status": "Today it's rainy!","email": "example@ex.com", "zip": "12345", "phone": "123-123-1234", "birthday": "1900-01-01","image": "https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg",
+		"following":["Peter","Lucy"]},
+	{"name": "Peter", "password": "222222", "status": "Today it's sunny!", "email": "123@gmail.com", "zip": "00000", "phone": "321-321-4321", "birthday": "1960-02-03","image": "http://www.laia-amela.com/wp-content/uploads/2016/10/avatar-number-1.jpg",
+		"following":["John","Lucy"]},
+	{"name": "Lucy", "password": "888888", "status": "Today it's foggy!", "email": "hi@hotmail.com", "zip": "54321", "phone": "909-123-1234", "birthday": "1996-05-01","image": "https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png",
+		"following":["John","Peter"]}
+]

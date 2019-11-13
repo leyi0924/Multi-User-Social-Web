@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+.authTitle{
+    background-image: url('http://sfwallpaper.com/images/cute-cat-backgrounds-4.jpg');
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 70%;
+    background-size: cover;
+    padding-bottom: 400px;
+    color: rgb(51, 128, 0);
+}
+
+.formTable{
+    color: purple;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    column-width: auto;
+}
+
+.red{
+  color: red;
+}
+
+.yj{
+  width: 200px;
+  height: 300px;
+}
+
+.authTitlePro{
+  background-image: url('http://sfwallpaper.com/images/cute-cat-backgrounds-4.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 80%;
+  background-size: 600px 400px;
+  color: rgb(51, 128, 0);
+}
+
+.profilepic{
+  width: 100px;
+  height: 100px;
+}
+
+.mp{
+  text-align: center;
+}
+
+.main1{
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+}
+
+.main2{
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+  border: solid;
+}
+
+.fimg{
+  width:85%;
+}
+
+img[src=""] {
+  display:none;
+}
+
+.postimg{
+  width:600px;
+  height: 500px;
+}

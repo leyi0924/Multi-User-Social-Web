@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="93en-US">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="HTML, Angular, CSS">
+    <meta name="description" content="Profile Page">
+    <meta name="author" content="Leyi Du">
+</head>
+<body>
+
+<button type="submit" (click)="toMain()">Main Page</button>
+<table class = "formTable" cellspacing="100">
+    <tr>
+    <td valign="top" width="45%">
+        <img width="70%" src={{image}}>
+        <br/>
+        <button><label>Upload an image<input type="file"  #file style="display: none" name="image" id="image"
+                                             (change)="getPic($event.target.files)" accept=".jpeg,.png,.jpg"></label></button>
+        <br/>
+        <button *ngIf="!linked" (click)="link()">Link Account</button><button *ngIf="linked" (click)="link()">Unlink Account</button>
+        <div *ngIf="unlinked">You have successfully unlinked.</div>
+        <div *ngIf="normalLogin">
+            <form (ngSubmit)="onLoginSubmit(login)" #login="ngForm">
+                Username: <br/><input type="text" placeholder="Enter your username" [(ngModel)]="login.username" #username="ngModel"
+                                      id="username" name="username" required>
+                <div class="red" *ngIf="username.errors?.required && (username.dirty || username.touched)">Name is required.</div>
+                <p></p>
+                Password: <br/><input type="password" placeholder="Enter your password" [(ngModel)]="login.password" #password="ngModel"
+                                      id="password" name="password" required>
+                <div class="red" *ngIf="password.errors?.required && (password.dirty || password.touched)">Password is required.</div>
+                <p></p><button type="submit" id = "loginBtn">Login</button>
+                <div class="message1" *ngIf="cannotLogin&&(!login.touched)">Not a registered user or entered wrong password.</div>
+            </form>
+        </div>
+    </td>
+    <td width="10%"></td>
+    <td  valign="top" width="45%">
+        <div class ="authTitlePro">
+            <br><br><br><br>
+            &nbsp;&nbsp;&nbsp;This is your OneStop Social Page!&nbsp;&nbsp;&nbsp;
+            <br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+    </td>
+
+    </tr>
+</table>
+
+<form (ngSubmit)="onRegSubmit(reg)" #reg="ngForm">
+    <table class = "formTable" cellspacing="100">
+        <tr>
+            <td valign="top" width="45%">
+                <b>Current Info</b><br/><br/>
+                {{name}}<br/>
+                {{e_mail}}<br/>
+                {{phone}}<br/>
+                {{birthday}}<br/>
+                {{zipCode}}<br/>
+            </td>
+            <td width="10%"></td>
+
+            <td valign="top" width="45%">
+                <b>Update Info</b><br/>
+                <!--<br/>Display Name<br><input type="text" [(ngModel)]="reg.disname" #disname="ngModel"-->
+                                            <!--id="disname" name="disname">-->
+                <br/>Email Address<br/><input type="email" [(ngModel)]="reg.email" #email="ngModel"
+                                               id="email" name="email" email>
+                <div class="red" *ngIf="email.errors?.required && (email.dirty || email.touched)">Email is required.</div>
+                <div class="red" *ngIf="email.errors?.email">Please enter a valid email.</div>
+                <br/>Phone Number<br/><input type="tel" [(ngModel)]="reg.tel" #tel="ngModel"
+                                              id="tel" name="tel" pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$">
+                <div class="red" *ngIf="tel.errors?.required && (tel.dirty || tel.touched)">Phone Number is required.</div>
+                <div class="red" *ngIf="tel.errors?.pattern">Please enter phone in 123-123-1234 format.</div>
+                <br/>Zipcode<br/><input type="text" [(ngModel)]="reg.zip" #zip="ngModel"
+                                         id="zip" name="zip" pattern="^[0-9]{5}$">
+                <div class="red" *ngIf="zip.errors?.required && (zip.dirty || zip.touched)">Zipcode is required.</div>
+                <div class="red" *ngIf="zip.errors?.pattern">Please enter in 12345 format.</div>
+                <br/>Password<br/><input type="password" [(ngModel)]="reg.password2" #password2="ngModel"
+                                          id="password2" name="password2">
+                <div class="red" *ngIf="password2.errors?.required && (password2.dirty || password2.touched)">Password is required.</div>
+                <br/>Password Confirmation<br/><input type="password" [(ngModel)]="reg.passcon" #passcon="ngModel"
+                                                       id="passcon" name="passcon">
+                <div class="red" *ngIf="passcon.errors?.required && (passcon.dirty || passcon.touched)">Password Confirmation is required.</div>
+                <div class="red" *ngIf="passcon.value!==password2.value">Password does not match.</div>
+                <p></p>
+                <p><input type="submit" value="Update Info"></p>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+
+</body>
+
+

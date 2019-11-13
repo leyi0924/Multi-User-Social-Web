@@ -1,0 +1,17 @@
+[
+    {"image": "http://www.laia-amela.com/wp-content/uploads/2016/10/avatar-number-1.jpg",
+        "name": "Peter",
+        "status": "Today it's sunny!",
+        "id": "1"
+    },
+    {"image": "https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg",
+        "name": "John",
+            "status": "Today it's rainy!",
+            "id": "2"
+        },
+        {"image": "https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584__340.png",
+        "name": "Lucy",
+            "status": "Today it's foggy!",
+            "id": "3"
+        }
+]
